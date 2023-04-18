@@ -25,7 +25,7 @@ class Cat:
         self.energy+=3
     def to_play(self):
         print('Час гратись')
-        self.gladness-=3
+        self.gladness-=5
         self.famine-=3
         self.energy-=5
 
@@ -37,7 +37,7 @@ class Cat:
             print('Дипресія...')
             self.alive=False
         elif self.energy>500:
-            print('Через свою супер енергію улетів в космос...')
+            print('Дуже сильний...')
             self.alive=False
         elif self.energy<0:
             print('Нема сил...')
@@ -52,7 +52,7 @@ class Cat:
         print(f'Energy - {round(self.energy, 3)}')
 
     def live(self,day):
-        day='Day' +str(day) + 'of' + self.name + 'live'
+        day='Day ' +str(day) + ' of ' + self.name + ' live'
         print(f'{day:^50}')
         live_cube=random.randint(1,4)
         if live_cube==1:
