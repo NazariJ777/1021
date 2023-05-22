@@ -1,4 +1,16 @@
 import random
+class Parents:
+    def __init__(self):
+        self.gladness2=50
+        self.money1=100000
+class Study:
+    def __init__(self):
+        self.progress=0
+class Dog:
+    def __init__(self,name1='Dog'):
+        self.name=name1
+        self.gladness1=50
+        self.satiety1=50
 class Nazarij:
     def __init__(self,name='Human', school=None, dog=None):
         self.name=name
@@ -12,7 +24,7 @@ class Nazarij:
         self.school=Study()
     def ask_parents_money(self):
         self.money+=50
-        self.parent.money-=50
+        self.parent.money1-=50
     def eat(self):
         self.satiety+=50
     def get_dog(self):
@@ -23,27 +35,27 @@ class Nazarij:
         self.school.progress+=0.4
         self.satiety-=4
         self.money-=12
-        self.parent.gladness+=10
-        self.parent.money-=100
+        self.parent.gladness2+=10
+        self.parent.money1-=100
     def chill(self):
         self.gladness+=30
         self.school.progress-=1
         self.satiety+=5
-        self.parent.gladness-=30
+        self.parent.gladness2-=30
     def do_homework(self):
         self.gladness-=15
         self.school.progress+=0.3
-        self.dog.gladness-=40
+        self.dog.gladness1-=40
     def go_for_a_walk_with_dog(self):
         self.gladness+=40
-        self.dog.gladness+=100
+        self.dog.gladness1+=100
     def give_food_for_dog(self):
         self.dog.satiety+=50
     def go_to_school(self):
         self.school.progress=0.5
         self.gladness-=10
         self.money+=50
-        self.parent.gladness+=40
+        self.parent.gladness2+=40
         dice=random.randint(1,4)
         if dice==1:
             self.money-=50
@@ -53,7 +65,7 @@ class Nazarij:
             self.money-=10
         if dice==4:
             self.money-=0
-    def day_indexes(self):
+    def day_indexes(self,day):
         day = f'Today the {day} of {self.name}`s life'
         print(f'{day:=^50}', '\n')
         human_indexes = self.name + "'s indexes"
@@ -63,14 +75,14 @@ class Nazarij:
         print((f'Gladness - {self.gladness}'))
         dog_indexes = 'Dog indexes'
         print(f'{dog_indexes:^50}', '\n')
-        print(f'Satiety - {self.dog.satiety}')
-        print(f'Gladness - {self.dog.gladness}')
+        print(f'Satiety - {self.dog.satiety1}')
+        print(f'Gladness - {self.dog.gladness1}')
         study_indexes = ' study indexes'
         print(f'{study_indexes:^50}', '\n')
         print(f'Progress - {self.school.progress}')
         parent_indexes = 'parents indexes'
-        print(f'Money - {self.parent.money}')
-        print(f'Gladnesss - {self.parent.gladness}')
+        print(f'Money - {self.parent.money1}')
+        print(f'Gladnesss - {self.parent.gladness2}')
     def is_alive(self):
         if self.gladness < 0:
             print('Дипресія...')
@@ -81,16 +93,16 @@ class Nazarij:
         elif self.money < -100:
             print("Банкрот...")
             return False
-        if self.dog.gladness < 0:
+        if self.dog.gladness1 < 0:
             print('Собачка заскучала...')
             return False
-        if self.parent.gladness < 0:
+        if self.parent.gladness2 < 0:
             print('Дипресія...')
             return False
         if self.school.progress < 3:
             print('سيسشيشسشسيشسي...')
             return False
-        if self.dog.satiety < 0:
+        if self.dog.satiety1 < 0:
             print('Собачка голодна...')
             return False
     def live(self,day):
@@ -103,14 +115,14 @@ class Nazarij:
             print('Хочу собачку')
             self.get_dog()
         dice = random.randint(1, 6)
-        if self.dog.satiety < 15:
+        if self.dog.satiety1 < 15:
             print('Дам собаці їсти')
             self.give_food_for_dog()
         if self.satiety < 20:
             print('Я буду Їсти')
             self.eat()
         elif self.gladness < 20:
-            if self.dog.gladness < 15:
+            if self.dog.gladness1 < 15:
                 print('Хочеться відпочити, але собаку потрібно вигуляти')
                 self.go_for_a_walk_with_dog()
             else:
@@ -141,20 +153,10 @@ class Nazarij:
             print('Дам собаці їсти')
             self.give_food_for_dog()
 
-class Dog:
-    def __init__(self,name1='Dog'):
-        self.name=name1
-        self.gladness=50
-        self.satiety=50
-class Study:
-    def __init__(self):
-        self.progress=0
-class Parents:
-    def __init__(self):
-        self.gladness=50
-        self.money=100000
-name1='Sharik'
+
+
+name1=Dog(name1='Sharik')
 nazarij=Nazarij(name='Nazarij')
-for day in range(1,30):
+for day in range(30):
     if nazarij.live(day)==False:
         break
